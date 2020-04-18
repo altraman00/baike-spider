@@ -4,6 +4,7 @@
 # @Author: xk
 # @File  : html_downloader.py
 import urllib.request
+from _curses import error
 
 
 class HtmlDownloader(object):
@@ -13,14 +14,18 @@ class HtmlDownloader(object):
         if url is None:
             return
 
-        response = urllib.request.urlopen(url)
-        code = response.code
+        try:
+            print('download_url:s%', url)
+            response = urllib.request.urlopen(url, timeout=10)
+            code = response.getcode()
 
-        if code != 200:
-            return None
+            if code != 200:
+                print('success')
+                return None
+        except error.URLError as e:
+            print(e.reason)
 
-        return response.read().decode('utf-8')
-
+        return response.read()
 
 # if __name__ == '__main__':
 #     print("入口")
@@ -28,4 +33,3 @@ class HtmlDownloader(object):
 #     dw = HtmlDownloader()
 #     content = dw.download(url)
 #     print('打印：', content, '\n')  # 打印
-

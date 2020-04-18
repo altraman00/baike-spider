@@ -39,11 +39,14 @@ class SpiderMain(object):
             # 解析页面html，获取新的url和数据
             new_urls, new_data = self.parser.parser(new_url, html_cont)
 
-            print("url:%s, data:%s" % (new_url, new_data))
+            print("craw:%d, :%s" % (count, new_url))
 
-            self.urls.add_new_urls(new_url)
+            self.urls.add_new_urls(new_urls)
             # 收集数据
             self.outputer.collect_date(new_data)
+
+            if count == 3:
+                break
 
             count = count + 1
 

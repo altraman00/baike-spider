@@ -4,8 +4,32 @@
 # @Author: xk 打印爬取下来的百科内容
 # @File  : html_outputer.py
 class HtmlOutputer(object):
-    def collect_date(self, new_data):
-        pass
 
+    def __init__(self):
+        self.datas = []
+
+    # 收集数据
+    def collect_date(self, data):
+        if data is None:
+            return
+        self.datas.append(data)
+
+    # 输出到html中
     def output_html(self):
-        pass
+        fout = open('output.html', 'w')
+
+        fout.write("<html>")
+        fout.write("<body>")
+        fout.write("<table>")
+
+        for data in self.datas:
+            fout.write("<tr>")
+            fout.write("<td>%s</td>" % data['url'].encode('utf-8'))
+            fout.write("<td>%s</td>" % data['title'].encode('utf-8'))
+            fout.write("<td>%s</td>" % data['summary'].encode('utf-8'))
+            fout.write("</tr>")
+
+        fout.write("</body>")
+        fout.write("</table>")
+        fout.write("</html>")
+

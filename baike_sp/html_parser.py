@@ -19,6 +19,7 @@ class HtmlParser(object):
         links = soup.find_all('a', href=re.compile(r"/item/*"))
         for link in links:
             new_url = link['href']
+            # print('page_url: %s,new_url:s%', page_url, new_url)
             new_full_url = urljoin(page_url, new_url)
             new_urls.add(new_full_url)
         return new_urls
@@ -46,12 +47,11 @@ class HtmlParser(object):
         if page_url is None or html_cont is None:
             return
 
-        soup = BeautifulSoup(page_url, 'html.parser', from_encoding='utf-8')
+        soup = BeautifulSoup(html_cont, 'html.parser', from_encoding='utf-8')
         new_urls = self.get_new_urls(page_url, soup)
         new_data = self.get_new_data(page_url, soup)
 
         return new_urls, new_data
-
 
 # if __name__ == '__main__':
 #     url = "https://baike.baidu.com/item/Python/407313"
@@ -62,5 +62,3 @@ class HtmlParser(object):
 #     result = htmlParser.parser(html, 123)
 #     print(result[0], '\n')
 #     print(result[1], '\n')
-
-
