@@ -5,8 +5,6 @@
 # @File  : html_downloader.py
 import urllib.request
 
-import requests
-
 
 class HtmlDownloader(object):
 
@@ -14,8 +12,6 @@ class HtmlDownloader(object):
     def download(self, url):
         if url is None:
             return
-
-        response = requests.get(url)
 
         response = urllib.request.urlopen(url)
         code = response.code
@@ -26,9 +22,10 @@ class HtmlDownloader(object):
         return response.read().decode('utf-8')
 
 
-if __name__ == '__main__':
-    print("入口")
-    dw = HtmlDownloader()
-    content = dw.download("http://www.baidu.com")
-    print('打印：', content, '\n')  # 打印
+# if __name__ == '__main__':
+#     print("入口")
+#     url = "https://baike.baidu.com/item/Python/407313"
+#     dw = HtmlDownloader()
+#     content = dw.download(url)
+#     print('打印：', content, '\n')  # 打印
 
