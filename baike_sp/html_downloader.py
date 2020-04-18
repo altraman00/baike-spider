@@ -3,12 +3,9 @@
 # @Time  : 2020/4/18 15:18
 # @Author: xk
 # @File  : html_downloader.py
-import gzip
 import urllib.request
-from io import BytesIO
 
 import requests
-from bs4 import BeautifulSoup
 
 
 class HtmlDownloader(object):
