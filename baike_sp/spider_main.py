@@ -50,6 +50,7 @@ class SpiderMain(object):
         # 打印爬取到的数据到html文件中
         self.outputer.output_html()
 
+
 if __name__ == '__main__':
     root_url = "https://baike.baidu.com/item/Python/407313"
     # 创建主函数类
